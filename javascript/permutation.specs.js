@@ -19,3 +19,14 @@ describe("when swapping more than two characters", function() {
         expect(result).toBe("cbedafg");
     });
 });
+
+describe("when there are multiple units", function() {
+    var string = "abcdefg";
+    var expression = "(ac)(bd)";
+
+    var result = permutate(string, expression);
+
+    it("should swap a with c and b with d", function() {
+        expect(result).toBe("cdabefg");
+    });
+});
