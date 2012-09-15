@@ -1,10 +1,21 @@
 function permutate(string, expression) {
-    var firstCharacter = expression[1];
-    var secondCharacter = expression[2];
+    var result = string;
+    var trimmed = expression.substring(1, expression.length - 1);
 
-    return string
-        .replace(secondCharacter, "*")
-        .replace(firstCharacter, secondCharacter)
-        .replace("*", firstCharacter)
-        ;
+    var indexes = [];
+    for (var i = 0, c; c = trimmed[i++];)
+        indexes.push(result.indexOf(c));
+
+    for (var i = 0; i < indexes.length - 1; i++) {
+        var firstCharacter = result[indexes[i]];
+        var secondCharacter = result[indexes[i + 1]];
+
+        result = result
+            .replace(secondCharacter, "*")
+            .replace(firstCharacter, secondCharacter)
+            .replace("*", firstCharacter)
+            ;
+    }
+
+    return result;
 }
