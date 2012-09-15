@@ -69,3 +69,10 @@ function optimize(original, permutated) {
 
     return compacted;
 }
+
+function permutateAndOptimize(string, expression) {
+    var p = permutate(string, expression);
+    var o = optimize(string, p);
+
+    return p + " " + o;
+}

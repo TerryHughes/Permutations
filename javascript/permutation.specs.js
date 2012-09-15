@@ -46,3 +46,36 @@ describe("when optimizing", function() {
         expect(permutate(original, result)).toBe(permutated);
     });
 });
+
+describe("sample", function() {
+    var string = "abcdefg";
+    var expression = "(acd)(bg)";
+
+    var result = permutateAndOptimize(string, expression).split(" ")[0];
+
+    it("should permutate", function() {
+        expect(result).toBe("cgdaefb");
+    });
+});
+
+describe("example", function() {
+    var string = "abcdefg";
+    var expression = "(acfg)(bcd)(aed)(fade)(bgfae)";
+
+    var result = permutateAndOptimize(string, expression).split(" ");
+
+    var permutated = result[0];
+    var optimization = result[1];
+
+    it("should permutate", function() {
+        expect(permutated).toBe("dcegbfa");
+    });
+
+    it("should optimize", function() {
+        expect(optimization).toNotBe(expression);
+    });
+
+    it("should result in the same permutation", function() {
+        expect(permutate(string, optimization)).toBe(permutated);
+    });
+});
