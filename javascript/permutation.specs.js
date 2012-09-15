@@ -30,3 +30,19 @@ describe("when there are multiple units", function() {
         expect(result).toBe("cdabefg");
     });
 });
+
+describe("when optimizing", function() {
+    var expression = "(ace)(ea)";
+    var original = "abcdefg";
+    var permutated = "cbadefg";
+
+    var result = optimize(original, permutated);
+
+    it("should optimize", function() {
+        expect(result).toNotBe(expression);
+    });
+
+    it("should result in the same permutation", function() {
+        expect(permutate(original, result)).toBe(permutated);
+    });
+});

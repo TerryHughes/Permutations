@@ -27,3 +27,45 @@ function permutate(string, expression) {
 
     return result;
 }
+
+function optimize(original, permutated) {
+    var internal = function() {
+        var result = "";
+        var visitedIndex = [];
+
+        for (var i = 0; i < original.length; i++) {
+            if (visitedIndex.indexOf(i) !== -1)
+                continue;
+
+            var swapStack = [];
+            swapStack.push(i);
+            result += "(" + original[i];
+
+            while (swapStack.length > 0) {
+                var current = swapStack.pop();
+
+                visitedIndex.push(current);
+
+                if (permutated[current] == original[i])
+                    continue;
+
+                swapStack.push(original.indexOf(permutated[current]));
+                result += permutated[current];
+            }
+
+            result += ")";
+        }
+
+        return result;
+    };
+
+    var detailed = internal();
+    var compacted = "";
+
+    var matches = detailed.split(/([a-z][a-z]+)/);
+    for (var i = 0; i < matches.length; i++)
+        if (matches[i] != "")
+            compacted += matches[i];
+
+    return compacted;
+}
