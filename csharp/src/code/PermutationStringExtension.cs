@@ -74,5 +74,13 @@ namespace Permutations
 
             return compacted;
         }
+
+        public static string PermutateAndOptimize(this string @string, string expression)
+        {
+            var permutate = @string.Permutate(expression);
+            var optimize = @string.Optimize(permutate);
+
+            return permutate + " " + optimize;
+        }
     }
 }
